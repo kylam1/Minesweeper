@@ -339,24 +339,21 @@ public void keyTyped() {
   if(startScreen) {
     final String numbers = "1234567890";
     if(custom1) {
-      for(int i = 0; i < numbers.length(); i++)
-        if(key == numbers.charAt(i))
-          customRow+=key;
-      if(key == BACKSPACE && customRow.length() > 0)
+      if(key >= 48 && key <= 57)
+        customRow+=String.fromCharCode(key);
+      if(key == 8 && customRow.length() > 0)
         customRow = customRow.substring(0, customRow.length()-1);
     }
     if(custom2) {
-      for(int i = 0; i < numbers.length(); i++)
-        if(key == numbers.charAt(i))
-          customCol+=key;
-      if(key == BACKSPACE && customCol.length() > 0)
+      if(key >= 48 && key <= 57)
+          customCol+=String.fromCharCode(key);
+      if(key == 8 && customCol.length() > 0)
         customCol = customCol.substring(0, customCol.length()-1);
     }
     if(customizeBomb) {
-      for(int i = 0; i < numbers.length(); i++)
-        if(key == numbers.charAt(i))
-          customBomb+=key;
-      if(key == BACKSPACE && customBomb.length() > 0)
+      if(key >= 48 && key <= 57)
+          customBomb+=String.fromCharCode(key);
+      if(key == 8 && customBomb.length() > 0)
         customBomb = customBomb.substring(0, customBomb.length()-1);
     }
   } //End of startScreen
