@@ -48,9 +48,9 @@ public void mousePressed() {
       customizeBomb = false;
     }
     if(mouseX >= 850 && mouseX <= 950 && mouseY >= 860 && mouseY <= 940) { //Go button
-      numRow = Integer.parseInt(customRow);
-      numCol = Integer.parseInt(customCol);
-      numBomb = Integer.parseInt(customBomb);
+      numRow = parseInt(customRow);
+      numCol = parseInt(customCol);
+      numBomb = parseInt(customBomb);
       flags = numBomb;
       gameStart = true;
       startScreen = false;
