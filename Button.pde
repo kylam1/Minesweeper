@@ -72,7 +72,7 @@ public class SimpleButton
             gameLost = true;
             gameOver = true;
             gameStart = false;
-            reveal(myRow, myCol);
+            //reveal(myRow, myCol);
           }
         } //End of mouseButton == LEFT
         
