@@ -7,6 +7,7 @@ public SimpleButton theOne;
 public boolean firstButtonPressed;
 
 public boolean startScreen, gameStart, gameOver, gameLost; //Screen control booleans
+public int revealRow, revealCol; //For reseting the buttons
 public boolean custom1, custom2, customizeBomb; public String customRow, customCol, customBomb; //For custom grid size options
 public int numRow, numCol, numBomb;
 public int flags; //Remaining number of flags -- Top left corner
@@ -47,6 +48,9 @@ public void setup() {
   resetButtonIsPressed = false;
   tempResetButtonIsPressed = false;
   gameWon = false;
+  
+  revealRow = 0;
+  revealCol = 0;
 } //End of setup()
 
 
@@ -75,6 +79,9 @@ public void reset() { //Things needed to reinitialize when game resets
   resetButtonIsPressed = false;
   tempResetButtonIsPressed = false;
   gameWon = false;
+  
+  revealRow = 0;
+  revealCol = 0;
 }
 /////////////////////////////////////////////////////////////////////////////////// DRAW
 
@@ -276,8 +283,21 @@ public void draw() {
       textAlign(CENTER);
       textSize(30);
       text("You win!", firstButtonX + (numRow * (w+4))/2., (firstButtonY + numCol * (w+4) + 10) + 35);
-    }
-      
+    } //End of gameWon
+    
+    if(gameLost) {
+      if(revealRow < numRow && revealCol < numCol && !buttons[revealRow][revealCol].getFlagged() && bombs[revealRow][revealCol])
+        buttons[revealRow][revealCol].press();
+      if(revealCol < numCol-1)
+        revealCol++;
+      else if (revealCol == numCol-1) {
+        if(revealRow < numRow-1) {
+          revealRow++;
+          revealCol = 0;
+        }
+      }
+    } //End of gameLost
+    
       //Play Area   
         fill(189);
         rect(firstButtonX - 9, firstButtonY - 4 - 50, numCol*(w+4) + 13, numRow*(w+4) + 50 + 10); //Border of everything
